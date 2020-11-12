@@ -11,4 +11,9 @@ public abstract class IConverter {
 	public abstract double fromBasicUnit(double baseUnit);
 	
 	public abstract double toBasicUnit(double value);
+	
+	@Override
+	public String toString() {
+		return this.type.getBasicUnit() + " [" + this.type.getType() + "]";
+	}
 }
