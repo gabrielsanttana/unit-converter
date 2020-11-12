@@ -17,7 +17,8 @@ public enum MeasureType {
 	TEMPERATURE("temperature", "kelvin (K)"),
 	LUMINOUS_INTENSITY("luminous intensity", "candela (cd)"),
 	AMOUNT_OF_SUBSTANCE("amount of substance", "mole (mole)"),
-	ELECTRIC_CURRENT("electric current", "ampere (A)");
+	ELECTRIC_CURRENT("electric current", "ampere (A)"),
+	CURRENCY("currency", "dollar ($)");
 	
 	private String type;
 	private String basicUnit;
