@@ -12,6 +12,7 @@ public class ClassSeeker {
 	public static final String classSuffix = ".class";
 	public static final String classSuffixRegex = classSuffix + "$";
 	
+	//Returns a list of classes which implement IConverter
 	public List<Class<IConverter>> lookForConverterClasses() throws ClassNotFoundException {
 		List<Class<IConverter>> convertersFound = new ArrayList<>();
 		
@@ -29,10 +30,12 @@ public class ClassSeeker {
 		return convertersFound;
 	}
 	
+	//Returns the root URL
 	private URL getRootUrl(String path) {
 		return Thread.currentThread().getContextClassLoader().getResource(path);
 	}
 	
+	//Returns all the files inside a given directory
 	private File[] getFilesInDirectory(URL directory) {
 		
 		File[] files = new File(directory.getFile()).listFiles(new FilenameFilter() {
@@ -44,6 +47,7 @@ public class ClassSeeker {
 		return files;
 	}
 
+	//Returns the Class from a given file
 	private Class<?> getClassFromFile(File classFile) throws ClassNotFoundException {
 		String className = classFile.getName().replaceAll(classSuffixRegex, "");
 		Class<?> cls = Class.forName(packagePath + "." + className);
@@ -51,6 +55,7 @@ public class ClassSeeker {
 		return cls;
 	}
 	
+	//Checks whether or not the given class inherits from IConverter
 	private boolean doesClassInheritFromConverter(Class<?> cls) {
 		return IConverter.class.isAssignableFrom(cls);
 	}
