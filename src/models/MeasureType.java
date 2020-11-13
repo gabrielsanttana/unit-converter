@@ -1,6 +1,7 @@
 package models;
 
 public enum MeasureType {
+	
 	DISTANCE("distance", "metre (m)"),
 	AREA("area", "square metre (m²)"),
 	VOLUME("volume", "litre (L)"),
