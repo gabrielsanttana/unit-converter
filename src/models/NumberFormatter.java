@@ -11,13 +11,13 @@ public class NumberFormatter {
 	public String formatDouble(double number) {
 		
 		if (number >= UPPER_BOUND || number <= LOWER_BOUND) {
-			NumberFormat formatter = new DecimalFormat("0.######E0");
+			NumberFormat formatter = new DecimalFormat("0.########E0");
 			
 			return formatter.format(number).replaceAll(",", ".");
 			
 		} else {
 			
-			String formattedNumber = String.format("%,6f", number)
+			String formattedNumber = String.format("%,.7f", number)
 					.replaceAll("[,]", "a");
 			
 			formattedNumber = formattedNumber

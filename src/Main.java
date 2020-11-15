@@ -6,7 +6,7 @@ public class Main {
 		
 		Controller c = new Controller();
 		
-		double a = 12450900;
+		double a = 204350.43008886;
 		String result = c.formatDouble(a);
 		
 		System.out.println(result);
