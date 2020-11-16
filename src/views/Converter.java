@@ -33,7 +33,7 @@ public class Converter implements ActionListener {
 
     convertFromPanel = new JPanel();
     toPanel = new JPanel();
-    
+
     fromLabel = new JLabel("Convert from");
     toLabel = new JLabel("to");
 
@@ -54,7 +54,7 @@ public class Converter implements ActionListener {
     panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
     panel.setLayout(new GridLayout(0, 1));
-    
+
     panel.add(fromLabel);
     panel.add(fromInput);
     panel.add(fromSelect);
