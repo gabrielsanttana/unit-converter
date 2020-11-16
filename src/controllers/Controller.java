@@ -1,8 +1,15 @@
 package controllers;
 
-public class Controller {
+import models.NumberFormatter;
 
-  public void hello() {
-    System.out.println("Hello");
-  }
+public class Controller {
+	public void hello() {
+		System.out.println("Hello");
+	}
+
+	public String formatDouble(double number) {
+		NumberFormatter formatter = new NumberFormatter();
+		
+		return formatter.formatDouble(number);
+	}
 }
