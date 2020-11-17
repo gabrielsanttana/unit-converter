@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.ClassSeeker;
 import models.IConverter;
+import models.NumberFormatter;
 
 public class Controller {
 	
@@ -19,5 +20,11 @@ public class Controller {
 		}
 		
 		return null;
-	}
+  }
+
+public String formatDouble(double number) {
+  NumberFormatter formatter = new NumberFormatter();
+  
+  return formatter.formatDouble(number);
 }
+  }
