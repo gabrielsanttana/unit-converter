@@ -1,4 +1,4 @@
-package views.lang;
+package models.utils.lang;
 
 public abstract class Lang {
 
