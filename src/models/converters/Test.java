@@ -4,6 +4,7 @@ import models.IConverter;
 import models.MeasureType;
 
 public class Test extends IConverter {
+
   public Test(MeasureType type) {
     super(type);
   }

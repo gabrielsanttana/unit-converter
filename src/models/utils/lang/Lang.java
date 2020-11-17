@@ -13,7 +13,7 @@ public abstract class Lang {
 
   public static String get(String[] words) {
     if (words.length != ELang.values().length) return null;
-    
+
     return words[lang.getIndex()];
   }
 }
