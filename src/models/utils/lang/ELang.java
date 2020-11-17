@@ -1,4 +1,4 @@
-package views.lang;
+package models.utils.lang;
 
 public enum ELang {
   EN_US(0),
