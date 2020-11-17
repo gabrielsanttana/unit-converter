@@ -13,7 +13,6 @@ public enum MeasureType {
   ENERGY("energy", "joule (J)"),
   POWER("power", "watt (W)"),
   VISCOSITY("viscosity", "pascal-second (Pa-s)"),
-
   TEMPERATURE("temperature", "kelvin (K)"),
   LUMINOUS_INTENSITY("luminous intensity", "candela (cd)"),
   AMOUNT_OF_SUBSTANCE("amount of substance", "mole (mole)"),
