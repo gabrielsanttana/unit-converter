@@ -1,4 +1,4 @@
-package models.utils.lang;
+package utils.lang;
 
 public enum ELang {
   EN_US(0),
