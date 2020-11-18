@@ -11,17 +11,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class Converter implements ActionListener {
+public class Converter {
 
   private JFrame frame;
   private JPanel panel;
-  private JPanel convertFromPanel;
-  private JPanel toPanel;
-  private JLabel label;
   private JLabel fromLabel;
   private JLabel toLabel;
-  private JButton button;
   private JTextField fromInput;
   private JTextField toInput;
   private JComboBox fromSelect;
@@ -30,9 +28,6 @@ public class Converter implements ActionListener {
 
   public Converter() {
     frame = new JFrame();
-
-    convertFromPanel = new JPanel();
-    toPanel = new JPanel();
 
     fromLabel = new JLabel("Convert from");
     toLabel = new JLabel("to");
@@ -50,6 +45,47 @@ public class Converter implements ActionListener {
     toSelect.addItem("Unidade 1");
     toSelect.addItem("Unidade 2");
     toSelect.addItem("Unidade 3");
+
+    toInput.setEditable(false);
+
+    fromInput
+      .getDocument()
+      .addDocumentListener(
+        new DocumentListener() {
+          @Override
+          public void insertUpdate(DocumentEvent e) {
+            setToInputValue();
+          }
+
+          @Override
+          public void removeUpdate(DocumentEvent e) {
+            setToInputValue();
+          }
+
+          @Override
+          public void changedUpdate(DocumentEvent e) {
+            setToInputValue();
+          }
+        }
+      );
+
+    fromSelect.addActionListener(
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          setToInputValue();
+        }
+      }
+    );
+
+    toSelect.addActionListener(
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          setToInputValue();
+        }
+      }
+    );
 
     panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
@@ -73,9 +109,8 @@ public class Converter implements ActionListener {
     new Converter();
   }
 
-  @Override
-  public void actionPerformed(ActionEvent event) {
+  public void setToInputValue() {
     count++;
-    label.setText("Number of clicks: " + count);
+    toInput.setText("Number of changes: " + count);
   }
 }
