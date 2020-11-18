@@ -53,17 +53,17 @@ public class Converter {
       .addDocumentListener(
         new DocumentListener() {
           @Override
-          public void insertUpdate(DocumentEvent e) {
+          public void insertUpdate(DocumentEvent event) {
             setToInputValue();
           }
 
           @Override
-          public void removeUpdate(DocumentEvent e) {
+          public void removeUpdate(DocumentEvent event) {
             setToInputValue();
           }
 
           @Override
-          public void changedUpdate(DocumentEvent e) {
+          public void changedUpdate(DocumentEvent event) {
             setToInputValue();
           }
         }
@@ -72,7 +72,7 @@ public class Converter {
     fromSelect.addActionListener(
       new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent event) {
           setToInputValue();
         }
       }
@@ -81,7 +81,7 @@ public class Converter {
     toSelect.addActionListener(
       new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent event) {
           setToInputValue();
         }
       }
