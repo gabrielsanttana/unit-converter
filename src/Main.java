@@ -8,7 +8,7 @@ public class Main {
     Controller controller = new Controller();
 
     List<Class<IConverter>> classes = null;
-    
+
     try {
       classes = controller.lookForConverterClasses();
     } catch (Exception e) {}
