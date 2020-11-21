@@ -25,4 +25,9 @@ public class Controller {
 
     return formatter.formatDouble(number);
   }
+  
+  public void convert(Class<IConverter> fromUnit, Class<IConverter> toUnit,
+			double fromValue) {
+	  UnitConverter unitConverter = new UnitConverter();
+  }
 }
