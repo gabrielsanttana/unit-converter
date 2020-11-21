@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class Converter {
+public final class Converter {
 
   private JFrame frame;
   private JPanel panel;
@@ -105,12 +105,12 @@ public class Converter {
     frame.setVisible(true);
   }
 
-  public static void main(String args[]) {
-    new Converter();
-  }
-
-  public void setToInputValue() {
+  private void setToInputValue() {
     count++;
     toInput.setText("Number of changes: " + count);
+  }
+
+  public static void start() {
+    new Converter();
   }
 }
