@@ -12,7 +12,10 @@ public class ClassSeeker {
   public static final String packagePath = "converters";
   public static final String classSuffix = ".class";
   public static final String classSuffixRegex = classSuffix + "$";
-  public static final String[] exceptions = new String[] { "BasicConverter", "AbstractConverter" };
+  public static final String[] exceptions = new String[] {
+    "BasicConverter",
+    "AbstractConverter",
+  };
 
   // Returns a list of classes which implement AbstractConverter
   public List<Class<AbstractConverter>> lookForConverterClasses()
