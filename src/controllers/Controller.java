@@ -1,13 +1,13 @@
 package controllers;
 
+import converters.AbstractConverter;
 import java.util.List;
 import models.ClassSeeker;
-import models.IConverter;
 import models.NumberFormatter;
 
 public class Controller {
 
-  public List<Class<IConverter>> lookForConverterClasses()
+  public List<Class<AbstractConverter>> lookForConverterClasses()
     throws ClassNotFoundException {
     try {
       ClassSeeker classSeeker = new ClassSeeker();

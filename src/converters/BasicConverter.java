@@ -1,21 +1,20 @@
 package converters;
 
-import models.IConverter;
 import models.MeasureType;
 
-public class BasicConverter extends IConverter {
-	
-	public BasicConverter(MeasureType type) {
-		super(type);
-	}
+public class BasicConverter extends AbstractConverter {
 
-	@Override
-	public double fromBasicUnit(double baseUnit) {
-		return baseUnit;
-	}
+  public BasicConverter(MeasureType type) {
+    super(type);
+  }
 
-	@Override
-	public double toBasicUnit(double value) {
-		return value;
-	}
+  @Override
+  public double fromBasicUnit(double baseUnit) {
+    return baseUnit;
+  }
+
+  @Override
+  public double toBasicUnit(double value) {
+    return value;
+  }
 }
