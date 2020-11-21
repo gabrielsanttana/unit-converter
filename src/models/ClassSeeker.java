@@ -7,9 +7,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class ClassSeeker {
 
-  public static final String packagePath = "models.converters";
+  public static final String packagePath = "converters";
   public static final String classSuffix = ".class";
   public static final String classSuffixRegex = classSuffix + "$";
   public static final String[] exceptions = new String[] { "BasicConverter" };
@@ -22,11 +23,14 @@ public class ClassSeeker {
     URL root = getRootUrl(packagePath.replace(".", "/"));
     File[] classFiles = getFilesInDirectory(root);
 
+    
     for (File classFile : classFiles) {
       Class<?> cls = getClassFromFile(classFile);
 
+      
       if (doesClassInheritFromConverter(cls)) {
         if (!isClassAnException(cls)) {
+          
           convertersFound.add((Class<AbstractConverter>) cls);
         }
       }

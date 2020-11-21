@@ -1,5 +1,9 @@
 import controllers.Controller;
 import converters.AbstractConverter;
+import models.ClassSorter;
+import models.MeasureType;
+import utils.MultiMap;
+
 import java.util.List;
 
 public class Main {
@@ -7,16 +11,24 @@ public class Main {
   public static void main(String[] args) {
     Controller controller = new Controller();
 
-    List<Class<AbstractConverter>> classes = null;
+    // List<Class<AbstractConverter>> classes = null;
 
-    try {
-      classes = controller.lookForConverterClasses();
-    } catch (Exception e) {}
+    // try {
+    //   classes = controller.lookForConverterClasses();
+    // } catch (Exception e) {}
 
-    if (classes != null) {
-      for (Class<AbstractConverter> cls : classes) {
-        System.out.println(cls.getName());
-      }
-    }
+    // if (classes != null) {
+    //   for (Class<AbstractConverter> cls : classes) {
+    //     System.out.println(cls.getName());
+    //   }
+    // }
+
+    ClassSorter classSorter = new ClassSorter();
+
+    classSorter.getClassesOrderedByUnitType();
+
+    // for(MeasureType classes : sortedClasses.getKeySet()) {
+    //   System.out.println(sortedClasses.get(classes));
+    // }
   }
 }
