@@ -1,4 +1,4 @@
-package models.converters;
+package converters;
 
 import models.IConverter;
 import models.MeasureType;
