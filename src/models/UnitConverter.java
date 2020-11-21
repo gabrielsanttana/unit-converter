@@ -1,11 +1,17 @@
 package models;
 
+import converters.AbstractConverter;
+
 public class UnitConverter {
 	
-	public void convert(Class<IConverter> fromUnit, Class<IConverter> toUnit,
-			double fromValue) throws Exception {
+	public String convert(AbstractConverter fromUnitConverter,
+			AbstractConverter toUnitConverter, double fromValue) throws Exception {
 		
-		IConverter fromUnitConverter = fromUnit.getDeclaredConstructor().newInstance();
-		System.out.println(fromUnitConverter.toString());
+		double returnValue = toUnitConverter.fromBasicUnit(fromUnitConverter.toBasicUnit(fromValue));
+		
+		NumberFormatter formatter = new NumberFormatter();
+		String returnValueFormatted = formatter.formatDouble(returnValue);
+		
+		return returnValueFormatted;
 	}
 }

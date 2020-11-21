@@ -28,10 +28,10 @@ public class Controller {
     return formatter.formatDouble(number);
   }
   
-  public void convert(Class<IConverter> fromUnit, Class<IConverter> toUnit,
+  public String convert(AbstractConverter fromUnit, AbstractConverter toUnit,
 			double fromValue) throws Exception {
 	  UnitConverter unitConverter = new UnitConverter();
 	  
-	  unitConverter.convert(fromUnit, toUnit, fromValue);
+	  return unitConverter.convert(fromUnit, toUnit, fromValue);
   }
 }
