@@ -1,4 +1,4 @@
-package models.utils.lang;
+package utils.lang;
 
 public abstract class Lang {
 
