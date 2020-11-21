@@ -1,9 +1,11 @@
 package controllers;
 
 import java.util.List;
+
 import models.ClassSeeker;
 import models.IConverter;
 import models.NumberFormatter;
+import models.UnitConverter;
 
 public class Controller {
 
@@ -27,7 +29,9 @@ public class Controller {
   }
   
   public void convert(Class<IConverter> fromUnit, Class<IConverter> toUnit,
-			double fromValue) {
+			double fromValue) throws Exception {
 	  UnitConverter unitConverter = new UnitConverter();
+	  
+	  unitConverter.convert(fromUnit, toUnit, fromValue);
   }
 }

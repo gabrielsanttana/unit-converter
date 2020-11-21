@@ -7,6 +7,7 @@ public class Main {
   public static void main(String[] args) {
     Controller controller = new Controller();
 
+    Class<IConverter> fromUnit = null, toUnit = null;
     List<Class<IConverter>> classes = null;
 
     try {
@@ -15,8 +16,16 @@ public class Main {
 
     if (classes != null) {
       for (Class<IConverter> cls : classes) {
-        System.out.println(cls.getName());
+        if (cls.getName().contains("Meter")) {
+        	fromUnit = cls;
+        } else if (cls.getName().contains("Liter")) {
+        	toUnit = cls;
+        }
       }
     }
+    
+    try {
+    	controller.convert(fromUnit, toUnit, 10.0);
+    } catch(Exception e) {}
   }
 }
