@@ -7,6 +7,7 @@ public class Main {
   public static void main(String[] args) {
     Controller controller = new Controller();
 
+    Class<AbstractConverter> fromUnit = null, toUnit = null;
     List<Class<AbstractConverter>> classes = null;
 
     try {
@@ -15,7 +16,7 @@ public class Main {
 
     if (classes != null) {
       for (Class<AbstractConverter> cls : classes) {
-        System.out.println(cls.getName());
+    	  System.out.println(cls.getName());
       }
     }
   }
