@@ -3,8 +3,8 @@ package converters;
 import models.MeasureType;
 
 public class JouleConverter extends BasicConverter {
-	
-	public JouleConverter() {
-		super(MeasureType.ENERGY);
-	}
+
+  public JouleConverter() {
+    super(MeasureType.ENERGY);
+  }
 }

@@ -1,10 +1,12 @@
-package models;
+package converters;
 
-public abstract class IConverter {
+import models.MeasureType;
+
+public abstract class AbstractConverter {
 
   public final MeasureType type;
 
-  public IConverter(MeasureType type) {
+  public AbstractConverter(MeasureType type) {
     this.type = type;
   }
 
