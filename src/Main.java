@@ -1,10 +1,9 @@
 import controllers.Controller;
 import converters.AbstractConverter;
+import java.util.List;
 import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
-
-import java.util.List;
 
 public class Main {
 
@@ -26,7 +25,6 @@ public class Main {
     ClassSorter classSorter = new ClassSorter();
 
     classSorter.getClassesOrderedByUnitType();
-
     // for(MeasureType classes : sortedClasses.getKeySet()) {
     //   System.out.println(sortedClasses.get(classes));
     // }

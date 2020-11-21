@@ -23,14 +23,11 @@ public class ClassSeeker {
     URL root = getRootUrl(packagePath.replace(".", "/"));
     File[] classFiles = getFilesInDirectory(root);
 
-    
     for (File classFile : classFiles) {
       Class<?> cls = getClassFromFile(classFile);
 
-      
       if (doesClassInheritFromConverter(cls)) {
         if (!isClassAnException(cls)) {
-          
           convertersFound.add((Class<AbstractConverter>) cls);
         }
       }
