@@ -1,11 +1,12 @@
 package views;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class Converter {
+public final class Converter {
 
   private JFrame frame;
   private JPanel panel;
@@ -27,8 +28,6 @@ public class Converter {
   private int count;
 
   public Converter() {
-    frame = new JFrame();
-
     fromLabel = new JLabel("Convert from");
     toLabel = new JLabel("to");
 
@@ -90,7 +89,6 @@ public class Converter {
     panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
     panel.setLayout(new GridLayout(0, 1));
-
     panel.add(fromLabel);
     panel.add(fromInput);
     panel.add(fromSelect);
@@ -98,19 +96,26 @@ public class Converter {
     panel.add(toSelect);
     panel.add(toInput);
 
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    frame = new JFrame();
     frame.add(panel, BorderLayout.CENTER);
+    frame.setPreferredSize(new Dimension(1000, 500));
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setTitle("Converter");
+    frame.setTitle("Unit Converter");
     frame.pack();
     frame.setVisible(true);
+    frame.setLocation(
+      screenSize.width / 2 - frame.getSize().width / 2,
+      screenSize.height / 2 - frame.getSize().height / 2
+    );
   }
 
-  public static void main(String args[]) {
-    new Converter();
-  }
-
-  public void setToInputValue() {
+  private void setToInputValue() {
     count++;
     toInput.setText("Number of changes: " + count);
+  }
+
+  public static void start() {
+    new Converter();
   }
 }
