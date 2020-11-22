@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class DecilitreConverter extends AbstractConverter {
+public class DecilitreConverter extends BasicConverter {
 
-  public DecilitreConverter(MeasureType type) {
-    super(type);
+  public DecilitreConverter() {
+    super(MeasureType.VOLUME);
   }
 
   @Override

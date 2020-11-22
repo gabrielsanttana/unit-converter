@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class DecimetreConveter extends AbstractConverter {
+public class DecimetreConveter extends BasicConverter {
 
-  public DecimetreConveter(MeasureType type) {
-    super(type);
+  public DecimetreConveter() {
+    super(MeasureType.AREA);
   }
 
   @Override

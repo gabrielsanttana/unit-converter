@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class NanometreConverter extends AbstractConverter {
+public class NanometreConverter extends BasicConverter {
 
-  public NanometreConverter(MeasureType type) {
-    super(type);
+  public NanometreConverter() {
+    super(MeasureType.AREA);
   }
 
   @Override

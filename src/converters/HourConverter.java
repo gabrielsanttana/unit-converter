@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class HourConverter extends AbstractConverter {
+public class HourConverter extends BasicConverter {
 
-  public HourConverter(MeasureType type) {
-    super(type);
+  public HourConverter() {
+    super(MeasureType.TIME);
   }
 
   @Override

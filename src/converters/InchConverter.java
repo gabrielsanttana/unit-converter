@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class InchConverter extends AbstractConverter {
+public class InchConverter extends BasicConverter {
 
-  public InchConverter(MeasureType type) {
-    super(type);
+  public InchConverter() {
+    super(MeasureType.AREA);
   }
 
   @Override
