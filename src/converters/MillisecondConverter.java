@@ -10,11 +10,11 @@ public class MillisecondConverter extends AbstractConverter {
 
   @Override
   public double fromBasicUnit(double baseUnit) {
-    return baseUnit / 1000;
+    return baseUnit * 1000;
   }
 
   @Override
   public double toBasicUnit(double value) {
-    return value * 1000;
+    return value / 1000;
   }
 }
