@@ -2,9 +2,9 @@ package converters;
 
 import models.MeasureType;
 
-public class LiterConverter extends BasicConverter {
+public class LitreConverter extends BasicConverter {
 
-  public LiterConverter() {
+  public LitreConverter() {
     super(MeasureType.VOLUME);
   }
 }
