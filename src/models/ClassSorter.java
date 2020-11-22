@@ -6,9 +6,9 @@ import utils.MultiMap;
 
 public class ClassSorter {
 
-  public MultiMap<MeasureType, AbstractConverter> getClassesOrderedByUnitType() {
+  public MultiMap<MeasureType, Class<AbstractConverter>> getClassesOrderedByUnitType() {
     ClassSeeker classSeeker = new ClassSeeker();
-    MultiMap<MeasureType, AbstractConverter> sortedClasses = new MultiMap<>();
+    MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = new MultiMap<>();
 
     try {
       List<Class<AbstractConverter>> converterClasses = classSeeker.lookForConverterClasses();
@@ -17,7 +17,7 @@ public class ClassSorter {
         AbstractConverter converterClassInstance = converterClass
           .getDeclaredConstructor()
           .newInstance();
-        sortedClasses.put(converterClassInstance.type, converterClassInstance);
+        sortedClasses.put(converterClassInstance.type, converterClass);
       }
     } catch (Exception exception) {
       exception.printStackTrace();
