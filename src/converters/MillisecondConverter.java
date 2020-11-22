@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class MillisecondConverter extends AbstractConverter {
+public class MillisecondConverter extends BasicConverter {
 
-  public MillisecondConverter(MeasureType type) {
-    super(type);
+  public MillisecondConverter() {
+    super(MeasureType.TIME);
   }
 
   @Override

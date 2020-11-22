@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class KilometreConverter extends AbstractConverter {
+public class KilometreConverter extends BasicConverter {
 
-  public KilometreConverter(MeasureType type) {
-    super(type);
+  public KilometreConverter() {
+    super(MeasureType.DISTANCE);
   }
 
   @Override
