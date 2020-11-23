@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class CentilitreConverter extends BasicConverter {
+public class CentilitreConverter extends BaseUnitConverter {
 
   public CentilitreConverter() {
     super(MeasureType.VOLUME);

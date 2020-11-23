@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class InchConverter extends BasicConverter {
+public class InchConverter extends BaseUnitConverter {
 
   public InchConverter() {
     super(MeasureType.AREA);
