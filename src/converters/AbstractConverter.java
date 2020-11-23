@@ -1,5 +1,6 @@
 package converters;
 
+import exceptions.ConversionErrorException;
 import models.MeasureType;
 
 /**
@@ -17,15 +18,17 @@ public abstract class AbstractConverter {
    *
    * @param baseUnit the number from the base unit to be converted
    * @return the converted number
+   * @throws ConversionErrorException
    */
-  public abstract double fromBasicUnit(double baseUnit);
+  public abstract double fromBasicUnit(double baseUnit) throws ConversionErrorException;
 
   /**
    *
    * @param value the number to be converted to the base unit
    * @return the converted number
+   * @throws ConversionErrorException
    */
-  public abstract double toBasicUnit(double value);
+  public abstract double toBasicUnit(double value) throws ConversionErrorException;
 
   /**
    * Returns a string with the unit type of the converter

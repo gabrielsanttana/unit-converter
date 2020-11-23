@@ -1,6 +1,7 @@
 package models;
 
 import converters.AbstractConverter;
+import exceptions.ConversionErrorException;
 
 /**
  * A class that converts values from a unit into another
@@ -13,20 +14,18 @@ public class UnitConverter {
    * @param toUnitConverter the unit type to be returned
    * @param fromValue the value to be converted
    * @return the converted value
+   * @throws ConversionErrorException
    * @throws Exception
    */
-  public String convert(
+  public double convert(
     AbstractConverter fromUnitConverter,
     AbstractConverter toUnitConverter,
     double fromValue
-  ) throws Exception {
+  ) throws ConversionErrorException, Exception {
     double returnValue = toUnitConverter.fromBasicUnit(
       fromUnitConverter.toBasicUnit(fromValue)
     );
 
-    NumberFormatter formatter = new NumberFormatter();
-    String returnValueFormatted = formatter.formatDouble(returnValue);
-
-    return returnValueFormatted;
+    return returnValue;
   }
 }
