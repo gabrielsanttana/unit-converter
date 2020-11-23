@@ -7,14 +7,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class the searches and returns all the available converter classes
+ */
+@SuppressWarnings("unchecked")
 public class ClassSeeker {
 
-  public static final String packagePath = "models.converters";
+  public static final String packagePath = "converters";
   public static final String classSuffix = ".class";
   public static final String classSuffixRegex = classSuffix + "$";
-  public static final String[] exceptions = new String[] { "BasicConverter" };
+  public static final String[] exceptions = new String[] {
+    "BaseUnitConverter",
+    "AbstractConverter",
+  };
 
-  // Returns a list of classes which implement AbstractConverter
+  /**
+   * Returns a list of classes which implement AbstractConverter
+   * @return the list with the converter classes to be instaciated
+   * @throws ClassNotFoundException
+   */
   public List<Class<AbstractConverter>> lookForConverterClasses()
     throws ClassNotFoundException {
     List<Class<AbstractConverter>> convertersFound = new ArrayList<>();
@@ -35,12 +46,20 @@ public class ClassSeeker {
     return convertersFound;
   }
 
-  // Returns the root URL
+  /**
+   * Returns the root URL
+   * @param path the path to the root
+   * @return the URL of the root package
+   */
   private URL getRootUrl(String path) {
     return Thread.currentThread().getContextClassLoader().getResource(path);
   }
 
-  // Returns all the files inside a given directory
+  /**
+   * Returns all the files inside a given directory
+   * @param directory the URL of the directory to be searched
+   * @return an array of files contained in the given directory
+   */
   private File[] getFilesInDirectory(URL directory) {
     File[] files = new File(directory.getFile())
     .listFiles(
@@ -54,7 +73,12 @@ public class ClassSeeker {
     return files;
   }
 
-  // Returns the Class from a given file
+  /**
+   * Returns the class from a given file
+   * @param classFile the file where the class is contained
+   * @return the class contained in the given file
+   * @throws ClassNotFoundException
+   */
   private Class<?> getClassFromFile(File classFile)
     throws ClassNotFoundException {
     String className = classFile.getName().replaceAll(classSuffixRegex, "");
@@ -63,12 +87,20 @@ public class ClassSeeker {
     return cls;
   }
 
-  // Checks whether or not the given class inherits from AbstractConverter
+  /**
+   * Checks whether or not the given class inherits from AbstractConverter
+   * @param cls the class to be checked
+   * @return true if the class inherit from a converter class and false if it does not
+   */
   private boolean doesClassInheritFromConverter(Class<?> cls) {
     return AbstractConverter.class.isAssignableFrom(cls);
   }
 
-  // Checks if the given class is inside the exceptions list
+  /**
+   * Checks if the given class is inside the exceptions list
+   * @param cls the class to be checked
+   * @return true if the class is an exception and false if it is not
+   */
   private boolean isClassAnException(Class<?> cls) {
     for (String e : exceptions) {
       if (cls.getName().contains(e)) {

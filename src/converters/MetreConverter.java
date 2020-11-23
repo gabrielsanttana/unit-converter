@@ -2,9 +2,9 @@ package converters;
 
 import models.MeasureType;
 
-public class MeterConverter extends BasicConverter {
+public class MetreConverter extends BaseUnitConverter {
 
-  public MeterConverter() {
+  public MetreConverter() {
     super(MeasureType.DISTANCE);
   }
 }

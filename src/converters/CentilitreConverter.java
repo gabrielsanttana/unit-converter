@@ -2,19 +2,19 @@ package converters;
 
 import models.MeasureType;
 
-public class BasicConverter extends AbstractConverter {
+public class CentilitreConverter extends BaseUnitConverter {
 
-  public BasicConverter(MeasureType type) {
-    super(type);
+  public CentilitreConverter() {
+    super(MeasureType.VOLUME);
   }
 
   @Override
   public double fromBasicUnit(double baseUnit) {
-    return baseUnit;
+    return baseUnit * 100;
   }
 
   @Override
   public double toBasicUnit(double value) {
-    return value;
+    return value / 100;
   }
 }

@@ -1,22 +1,12 @@
-import controllers.Controller;
-import converters.AbstractConverter;
-import java.util.List;
+import views.Converter;
 
 public class Main {
 
+  /**
+   * Executes the program main thread
+   * @param args an array of strings containing all the passed command line arguments
+   */
   public static void main(String[] args) {
-    Controller controller = new Controller();
-
-    List<Class<AbstractConverter>> classes = null;
-
-    try {
-      classes = controller.lookForConverterClasses();
-    } catch (Exception e) {}
-
-    if (classes != null) {
-      for (Class<AbstractConverter> cls : classes) {
-        System.out.println(cls.getName());
-      }
-    }
+    Converter converter = new Converter();
   }
 }

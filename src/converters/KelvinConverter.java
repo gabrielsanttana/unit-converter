@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class KelvinConverter extends BasicConverter {
+public class KelvinConverter extends BaseUnitConverter {
 
   public KelvinConverter() {
     super(MeasureType.TEMPERATURE);
