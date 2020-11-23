@@ -50,36 +50,44 @@ public class Converter {
 
     setFromComboBox();
 
-    fromInput.getDocument().addDocumentListener(new DocumentListener() {
-      @Override
-      public void insertUpdate(DocumentEvent event) {
-        printConversionResult();
-      }
+    fromInput
+      .getDocument()
+      .addDocumentListener(
+        new DocumentListener() {
+          @Override
+          public void insertUpdate(DocumentEvent event) {
+            printConversionResult();
+          }
 
-      @Override
-      public void removeUpdate(DocumentEvent event) {
-        printConversionResult();
-      }
+          @Override
+          public void removeUpdate(DocumentEvent event) {
+            printConversionResult();
+          }
 
-      @Override
-      public void changedUpdate(DocumentEvent event) {
-        printConversionResult();
-      }
-    });
+          @Override
+          public void changedUpdate(DocumentEvent event) {
+            printConversionResult();
+          }
+        }
+      );
 
-    fromSelect.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent event) {
-        setToComboBox();
+    fromSelect.addActionListener(
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+          setToComboBox();
+        }
       }
-    });
+    );
 
-    toSelect.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent event) {
-        printConversionResult();
+    toSelect.addActionListener(
+      new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+          printConversionResult();
+        }
       }
-    });
+    );
 
     panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
@@ -93,15 +101,21 @@ public class Converter {
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     frame = new JFrame();
-    frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Converter.class.getResource("/resources/ruler.png")));
+    frame.setIconImage(
+      Toolkit
+        .getDefaultToolkit()
+        .getImage(Converter.class.getResource("/resources/ruler.png"))
+    );
     frame.add(panel, BorderLayout.CENTER);
     frame.setPreferredSize(new Dimension(1000, 500));
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setTitle("Unit Converter");
     frame.pack();
     frame.setVisible(true);
-    frame.setLocation(screenSize.width / 2 - frame.getSize().width / 2,
-        screenSize.height / 2 - frame.getSize().height / 2);
+    frame.setLocation(
+      screenSize.width / 2 - frame.getSize().width / 2,
+      screenSize.height / 2 - frame.getSize().height / 2
+    );
   }
 
   private String getConversionResult() {
@@ -114,9 +128,17 @@ public class Converter {
     MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
-      for (Class<AbstractConverter> converters : sortedClasses.get(measureType)) {
-        fromSelect
-            .addItem(measureType + ": " + converters.getName().replace("converters.", "").replace("Converter", ""));
+      for (Class<AbstractConverter> converters : sortedClasses.get(
+        measureType
+      )) {
+        fromSelect.addItem(
+          measureType +
+          ": " +
+          converters
+            .getName()
+            .replace("converters.", "")
+            .replace("Converter", "")
+        );
       }
     }
   }
@@ -133,14 +155,21 @@ public class Converter {
     MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
-      for (Class<AbstractConverter> converters : sortedClasses.get(measureType)) {
+      for (Class<AbstractConverter> converters : sortedClasses.get(
+        measureType
+      )) {
         String type = measureType + "";
         if (type.equals(selectedType)) {
-          toSelect
-              .addItem(measureType + ": " + converters.getName().replace("converters.", "").replace("Converter", ""));
+          toSelect.addItem(
+            measureType +
+            ": " +
+            converters
+              .getName()
+              .replace("converters.", "")
+              .replace("Converter", "")
+          );
         }
       }
-
     }
   }
 
