@@ -20,7 +20,8 @@ import models.MeasureType;
 import utils.MultiMap;
 
 /**
- * A class that renders the program main view, the one that receives the unit types and prints out the conversion result
+ * A class that renders the program main view, the one that receives the unit
+ * types and prints out the conversion result
  */
 public class Converter {
 
@@ -74,9 +75,7 @@ public class Converter {
       new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-          fromSelect.getSelectedItem().toString();
           setToComboBox();
-          printConversionResult();
         }
       }
     );
@@ -145,7 +144,33 @@ public class Converter {
   }
 
   public void setToComboBox() {
-    System.out.println(fromSelect.getSelectedItem().toString());
+    // Clear ComboBox
+    toSelect.removeAllItems();
+
+    // Add in ComboBox all item with type equals selected type
+    String selectedType = fromSelect.getSelectedItem().toString().split(":")[0];
+
+    ClassSorter classSorter = new ClassSorter();
+
+    MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
+
+    for (MeasureType measureType : sortedClasses.getKeySet()) {
+      for (Class<AbstractConverter> converters : sortedClasses.get(
+        measureType
+      )) {
+        String type = measureType + "";
+        if (type.equals(selectedType)) {
+          toSelect.addItem(
+            measureType +
+            ": " +
+            converters
+              .getName()
+              .replace("converters.", "")
+              .replace("Converter", "")
+          );
+        }
+      }
+    }
   }
 
   public void printConversionResult() {
