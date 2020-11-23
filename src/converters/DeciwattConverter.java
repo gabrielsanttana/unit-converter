@@ -10,11 +10,11 @@ public class DeciwattConverter extends AbstractConverter {
 
   @Override
   public double fromBasicUnit(double baseUnit) {
-    return baseUnit / 10;
+    return baseUnit * 10;
   }
 
   @Override
   public double toBasicUnit(double value) {
-    return value * 10;
+    return value / 10;
   }
 }
