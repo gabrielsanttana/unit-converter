@@ -1,5 +1,6 @@
 package views;
 
+import converters.AbstractConverter;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,8 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import models.ClassSorter;
+import models.MeasureType;
+import utils.MultiMap;
 
-public final class Converter {
+public class Converter {
 
   private JFrame frame;
   private JPanel panel;
@@ -26,6 +30,7 @@ public final class Converter {
   private JComboBox fromSelect;
   private JComboBox toSelect;
   private int count;
+  private MeasureType conversionType;
 
   public Converter() {
     fromLabel = new JLabel("Convert from");
@@ -37,15 +42,9 @@ public final class Converter {
     fromSelect = new JComboBox();
     toSelect = new JComboBox();
 
-    fromSelect.addItem("Unidade 1");
-    fromSelect.addItem("Unidade 2");
-    fromSelect.addItem("Unidade 3");
-
-    toSelect.addItem("Unidade 1");
-    toSelect.addItem("Unidade 2");
-    toSelect.addItem("Unidade 3");
-
     toInput.setEditable(false);
+
+    setFromComboBox();
 
     fromInput
       .getDocument()
@@ -53,17 +52,17 @@ public final class Converter {
         new DocumentListener() {
           @Override
           public void insertUpdate(DocumentEvent event) {
-            setToInputValue();
+            printConversionResult();
           }
 
           @Override
           public void removeUpdate(DocumentEvent event) {
-            setToInputValue();
+            printConversionResult();
           }
 
           @Override
           public void changedUpdate(DocumentEvent event) {
-            setToInputValue();
+            printConversionResult();
           }
         }
       );
@@ -72,7 +71,9 @@ public final class Converter {
       new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-          setToInputValue();
+          fromSelect.getSelectedItem().toString();
+          setToComboBox();
+          printConversionResult();
         }
       }
     );
@@ -81,7 +82,7 @@ public final class Converter {
       new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-          setToInputValue();
+          printConversionResult();
         }
       }
     );
@@ -98,6 +99,11 @@ public final class Converter {
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     frame = new JFrame();
+    frame.setIconImage(
+      Toolkit
+        .getDefaultToolkit()
+        .getImage(Converter.class.getResource("/resources/ruler.png"))
+    );
     frame.add(panel, BorderLayout.CENTER);
     frame.setPreferredSize(new Dimension(1000, 500));
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,12 +116,38 @@ public final class Converter {
     );
   }
 
-  private void setToInputValue() {
-    count++;
-    toInput.setText("Number of changes: " + count);
+  private String getConversionResult() {
+    return "100";
   }
 
-  public static void start() {
-    new Converter();
+  public void setFromComboBox() {
+    ClassSorter classSorter = new ClassSorter();
+
+    MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
+
+    for (MeasureType measureType : sortedClasses.getKeySet()) {
+      for (Class<AbstractConverter> converters : sortedClasses.get(
+        measureType
+      )) {
+        fromSelect.addItem(
+          measureType +
+          ": " +
+          converters
+            .getName()
+            .replace("converters.", "")
+            .replace("Converter", "")
+        );
+      }
+    }
+  }
+
+  public void setToComboBox() {
+    System.out.println(fromSelect.getSelectedItem().toString());
+  }
+
+  public void printConversionResult() {
+    String result = getConversionResult();
+
+    toInput.setText(result);
   }
 }
