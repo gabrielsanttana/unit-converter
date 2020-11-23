@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class DecimetreConveter extends BasicConverter {
+public class DecimetreConveter extends BaseUnitConverter {
 
   public DecimetreConveter() {
     super(MeasureType.AREA);

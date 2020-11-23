@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class KilometreConverter extends BasicConverter {
+public class KilometreConverter extends BaseUnitConverter {
 
   public KilometreConverter() {
     super(MeasureType.DISTANCE);

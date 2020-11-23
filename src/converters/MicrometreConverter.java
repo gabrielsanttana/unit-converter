@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class MicrometreConverter extends BasicConverter {
+public class MicrometreConverter extends BaseUnitConverter {
 
   public MicrometreConverter() {
     super(MeasureType.AREA);

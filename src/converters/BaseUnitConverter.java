@@ -2,9 +2,9 @@ package converters;
 
 import models.MeasureType;
 
-public class BasicConverter extends AbstractConverter {
+public class BaseUnitConverter extends AbstractConverter {
 
-  public BasicConverter(MeasureType type) {
+  public BaseUnitConverter(MeasureType type) {
     super(type);
   }
 

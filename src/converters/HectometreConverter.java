@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class HectometreConverter extends BasicConverter {
+public class HectometreConverter extends BaseUnitConverter {
 
   public HectometreConverter() {
     super(MeasureType.AREA);

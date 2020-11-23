@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class SquareMetreConverter extends BasicConverter {
+public class SquareMetreConverter extends BaseUnitConverter {
 
   public SquareMetreConverter() {
     super(MeasureType.AREA);

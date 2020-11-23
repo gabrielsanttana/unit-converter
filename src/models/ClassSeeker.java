@@ -14,7 +14,7 @@ public class ClassSeeker {
   public static final String classSuffix = ".class";
   public static final String classSuffixRegex = classSuffix + "$";
   public static final String[] exceptions = new String[] {
-    "BasicConverter",
+    "BaseUnitConverter",
     "AbstractConverter",
   };
 
