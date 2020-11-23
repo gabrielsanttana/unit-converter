@@ -5,8 +5,8 @@ import java.util.List;
 import utils.MultiMap;
 
 /**
-   * A class the sorts and returns all converter classes in unit type order
-   */
+ * A class the sorts and returns all converter classes in unit type order
+ */
 public class ClassSorter {
 
   /**

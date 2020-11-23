@@ -1,5 +1,3 @@
 package exceptions;
 
-public class Example {
-  
-}
+public class Example {}

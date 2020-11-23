@@ -23,7 +23,7 @@ public class ClassSeeker {
 
   /**
    * Returns a list of classes which implement AbstractConverter
-   * @return the list with the converter classes to be instaciated  
+   * @return the list with the converter classes to be instaciated
    * @throws ClassNotFoundException
    */
   public List<Class<AbstractConverter>> lookForConverterClasses()
@@ -48,7 +48,7 @@ public class ClassSeeker {
 
   /**
    * Returns the root URL
-   * @param path the path to the root 
+   * @param path the path to the root
    * @return the URL of the root package
    */
   private URL getRootUrl(String path) {

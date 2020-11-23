@@ -19,8 +19,7 @@ public class UnitConverter {
     AbstractConverter fromUnitConverter,
     AbstractConverter toUnitConverter,
     double fromValue
-  )
-    throws Exception {
+  ) throws Exception {
     double returnValue = toUnitConverter.fromBasicUnit(
       fromUnitConverter.toBasicUnit(fromValue)
     );

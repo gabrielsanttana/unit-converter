@@ -34,8 +34,7 @@ public class Controller {
     AbstractConverter fromUnit,
     AbstractConverter toUnit,
     double fromValue
-  )
-    throws Exception {
+  ) throws Exception {
     UnitConverter unitConverter = new UnitConverter();
 
     return unitConverter.convert(fromUnit, toUnit, fromValue);

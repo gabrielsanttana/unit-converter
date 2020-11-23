@@ -14,14 +14,14 @@ public abstract class AbstractConverter {
   }
 
   /**
-   * 
+   *
    * @param baseUnit the number from the base unit to be converted
    * @return the converted number
    */
   public abstract double fromBasicUnit(double baseUnit);
 
   /**
-   * 
+   *
    * @param value the number to be converted to the base unit
    * @return the converted number
    */
