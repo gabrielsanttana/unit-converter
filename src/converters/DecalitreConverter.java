@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class DecalitreConverter extends BasicConverter {
+public class DecalitreConverter extends BaseUnitConverter {
 
   public DecalitreConverter() {
     super(MeasureType.VOLUME);

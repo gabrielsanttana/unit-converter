@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class HourConverter extends BasicConverter {
+public class HourConverter extends BaseUnitConverter {
 
   public HourConverter() {
     super(MeasureType.TIME);

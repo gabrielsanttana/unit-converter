@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class MillisecondConverter extends BasicConverter {
+public class MillisecondConverter extends BaseUnitConverter {
 
   public MillisecondConverter() {
     super(MeasureType.TIME);

@@ -6,6 +6,9 @@ import models.ClassSeeker;
 import models.NumberFormatter;
 import models.UnitConverter;
 
+/**
+ * A class the servers as an interface between the views and the methods of the models
+ */
 public class Controller {
 
   public List<Class<AbstractConverter>> lookForConverterClasses()
@@ -31,8 +34,7 @@ public class Controller {
     AbstractConverter fromUnit,
     AbstractConverter toUnit,
     double fromValue
-  )
-    throws Exception {
+  ) throws Exception {
     UnitConverter unitConverter = new UnitConverter();
 
     return unitConverter.convert(fromUnit, toUnit, fromValue);

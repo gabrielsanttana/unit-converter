@@ -2,7 +2,7 @@ package converters;
 
 import models.MeasureType;
 
-public class KilometreHourConverter extends BasicConverter {
+public class KilometreHourConverter extends BaseUnitConverter {
 
   public KilometreHourConverter() {
     super(MeasureType.SPEED);
