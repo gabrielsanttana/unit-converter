@@ -1,5 +1,8 @@
 package models;
 
+/**
+ * An enumerator that contains all the possible measure types to be converted
+ */
 public enum MeasureType {
   DISTANCE("distance", "metre (m)"),
   AREA("area", "square metre (m�)"),

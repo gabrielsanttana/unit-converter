@@ -19,6 +19,9 @@ import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
 
+/**
+ * A class that renders the program main view, the one that receives the unit types and prints out the conversion result
+ */
 public class Converter {
 
   private JFrame frame;
