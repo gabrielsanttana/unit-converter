@@ -5,6 +5,6 @@ import models.MeasureType;
 public class KelvinConverter extends BaseUnitConverter {
 
   public KelvinConverter() {
-    super(MeasureType.TEMPERATURE);
+    super(MeasureType.TEMPERATURE, false);
   }
 }

@@ -23,7 +23,7 @@ public class ClassSeeker {
 
   /**
    * Returns a list of classes which implement AbstractConverter
-   * @return the list with the converter classes to be instaciated
+   * @return the list with the converter classes to be instantiated
    * @throws ClassNotFoundException
    */
   public List<Class<AbstractConverter>> lookForConverterClasses()

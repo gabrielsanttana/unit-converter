@@ -5,6 +5,6 @@ import models.MeasureType;
 public class WattConverter extends BaseUnitConverter {
 
   public WattConverter() {
-    super(MeasureType.POWER);
+    super(MeasureType.POWER, false);
   }
 }

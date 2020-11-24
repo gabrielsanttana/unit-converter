@@ -1,10 +1,15 @@
 package controllers;
 
-import converters.AbstractConverter;
 import java.util.List;
+
+import converters.AbstractConverter;
+import exceptions.ConversionErrorException;
 import models.ClassSeeker;
+import models.ClassSorter;
+import models.MeasureType;
 import models.NumberFormatter;
 import models.UnitConverter;
+import utils.MultiMap;
 
 /**
  * A class the servers as an interface between the views and the methods of the models
@@ -28,6 +33,16 @@ public class Controller {
 
     return null;
   }
+  
+  /**
+   * Sorts the converter classes by measure type
+   * @return a MultiMap containing the sorted classes
+   */
+  public MultiMap<MeasureType, Class<AbstractConverter>> sortConverterClasses() {
+  	ClassSorter classSorter = new ClassSorter();
+  	
+  	return classSorter.getClassesOrderedByUnitType();
+  }
 
   /**
    * Formats and returns doubles
@@ -46,15 +61,21 @@ public class Controller {
    * @param toUnitConverter the unit type to be returned
    * @param fromValue the value to be converted
    * @return the converted value
-   * @throws Exception
    */
   public String convert(
     AbstractConverter fromUnit,
     AbstractConverter toUnit,
-    double fromValue
-  ) throws Exception {
-    UnitConverter unitConverter = new UnitConverter();
+    double fromValue) {
+  	try {
+      UnitConverter unitConverter = new UnitConverter();
 
-    return unitConverter.convert(fromUnit, toUnit, fromValue);
+      return formatDouble(unitConverter.convert(fromUnit, toUnit, fromValue));
+  	} catch (ConversionErrorException e) {
+  		e.printStackTrace();
+  	} catch (Exception e) {
+  		e.printStackTrace();
+  	}
+  	
+  	return "";
   }
 }
