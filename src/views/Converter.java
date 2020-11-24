@@ -33,15 +33,18 @@ public class Converter {
   private JMenuBar menuBar;
   private JMenu fileMenu;
   private JMenu helpMenu;
+  private JMenu languageMenu;
   private JMenuItem menuCloseItem;
   private JMenuItem menuHelpItem;
+  private JMenuItem portugueseLanguageItem;
+  private JMenuItem englishLanguageItem;
   private JPanel panel;
   private JLabel fromLabel;
   private JLabel toLabel;
   private JTextField fromInput;
   private JTextField toInput;
-  private JComboBox fromSelect;
-  private JComboBox toSelect;
+  private JComboBox<String> fromSelect;
+  private JComboBox<String> toSelect;
 
   /**
    * Constructs the converter view
@@ -53,8 +56,8 @@ public class Converter {
     fromInput = new JTextField();
     toInput = new JTextField();
 
-    fromSelect = new JComboBox();
-    toSelect = new JComboBox();
+    fromSelect = new JComboBox<>();
+    toSelect = new JComboBox<>();
 
     toInput.setEditable(false);
 
@@ -99,24 +102,46 @@ public class Converter {
       }
     );
 
-    menuCloseItem = new JMenuItem(Lang.get(Lang.close));
-    menuHelpItem = new JMenuItem(Lang.get(Lang.help));
+    menuCloseItem = new JMenuItem("Close");
+    menuHelpItem = new JMenuItem("Help");
+    portugueseLanguageItem = new JMenuItem("Portuguese");
+    englishLanguageItem = new JMenuItem("English");
 
-    fileMenu = new JMenu(Lang.get(Lang.file));
-    helpMenu = new JMenu(Lang.get(Lang.help));
+    fileMenu = new JMenu("File");
+    helpMenu = new JMenu("Help");
+    languageMenu = new JMenu("Language");
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
+    languageMenu.add(englishLanguageItem);
+    languageMenu.add(portugueseLanguageItem);
 
     menuBar = new JMenuBar();
     menuBar.setBounds(0, 0, 658, 22);
     menuBar.add(fileMenu);
     menuBar.add(helpMenu);
+    menuBar.add(languageMenu);
 
     menuCloseItem.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           System.exit(0);
+        }
+      }
+    );
+
+    englishLanguageItem.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          //Set program language
+        }
+      }
+    );
+
+    menuCloseItem.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          //Set program language
         }
       }
     );

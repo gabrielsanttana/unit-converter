@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import utils.lang.Lang;
 
 /**
@@ -26,7 +24,8 @@ import utils.lang.Lang;
  */
 public class Helper extends JPanel {
 
-  private BufferedImage image;
+  private static final long serialVersionUID = 1L;
+
   private JFrame frame;
   private JPanel panel;
 
@@ -86,9 +85,7 @@ public class Helper extends JPanel {
     helpInfo.setEditable(false);
     helpInfo.setAutoscrolls(true);
     helpInfo.setBounds(6, 16, 543, 163);
-    helpInfo.setText(
-      Lang.get(Lang.helper_text)
-    );
+    helpInfo.setText(Lang.get(Lang.helper_text));
     helpInfo.setColumns(1);
     helpInfo.setLineWrap(true);
     helpInfo.setWrapStyleWord(true);

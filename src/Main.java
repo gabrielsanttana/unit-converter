@@ -8,6 +8,6 @@ public class Main {
    * @param args an array of strings containing all the passed command line arguments
    */
   public static void main(String[] args) {
-    Converter converter = new Converter();
+    new Converter();
   }
 }
