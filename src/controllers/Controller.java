@@ -37,7 +37,7 @@ public class Controller {
    * Sorts the converter classes by measure type
    * @return a MultiMap containing the sorted classes
    */
-  public MultiMap<MeasureType, Class<AbstractConverter>> sortConverterClasses() {
+  public MultiMap<MeasureType, Class<AbstractConverter>> getClassesOrderedByUnitType() {
     ClassSorter classSorter = new ClassSorter();
 
     return classSorter.getClassesOrderedByUnitType();

@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,7 +25,6 @@ import javax.swing.event.DocumentListener;
 import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
-import utils.lang.ELang;
 import utils.lang.Lang;
 
 /**
@@ -39,7 +37,6 @@ public class Converter {
   private JMenuBar menuBar;
   private JMenu fileMenu;
   private JMenu helpMenu;
-  private JMenu languageMenu;
   private JMenuItem menuCloseItem;
   private JMenuItem menuHelpItem;
   private JMenuItem portugueseLanguageItem;
@@ -51,6 +48,7 @@ public class Converter {
   private JTextField toInput;
   private JComboBox<String> fromSelect;
   private JComboBox<String> toSelect;
+  private Controller controller = new Controller();
 
   private MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses;
 
@@ -68,8 +66,6 @@ public class Converter {
     toSelect = new JComboBox<>();
 
     toInput.setEditable(false);
-
-    Locale language = new Locale("PT");
 
     setFromComboBox();
 
@@ -119,7 +115,6 @@ public class Converter {
 
     fileMenu = new JMenu(Lang.get(Lang.file));
     helpMenu = new JMenu(Lang.get(Lang.help));
-    languageMenu = new JMenu(Lang.get(Lang.language));
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
@@ -231,10 +226,11 @@ public class Converter {
     return Lang.get(Lang.conversion_failed);
   }
 
-  public void setFromComboBox() {
-    ClassSorter classSorter = new ClassSorter();
-
-    sortedClasses = classSorter.getClassesOrderedByUnitType();
+  /**
+   * Sets the options for the from unit type
+   */
+  private void setFromComboBox() {
+    sortedClasses = controller.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
       for (Class<AbstractConverter> converters : sortedClasses.get(
@@ -252,16 +248,15 @@ public class Converter {
     }
   }
 
-  public void setToComboBox() {
-    // Clear ComboBox
+  /**
+   * Sets the options for the to unit type
+   */
+  private void setToComboBox() {
     toSelect.removeAllItems();
 
-    // Add in ComboBox all item with type equals selected type
     String selectedType = fromSelect.getSelectedItem().toString().split(":")[0];
 
-    ClassSorter classSorter = new ClassSorter();
-
-    sortedClasses = classSorter.getClassesOrderedByUnitType();
+    sortedClasses = controller.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
       for (Class<AbstractConverter> converters : sortedClasses.get(
@@ -282,12 +277,21 @@ public class Converter {
     }
   }
 
-  public void printConversionResult() {
+  /**
+   * Prints out the conversion result for the user
+   */
+  private void printConversionResult() {
     String result = getConversionResult();
 
     toInput.setText(result);
   }
 
+  /**
+   * Gets the converter class name to be instanciated
+   * @param name the name of the converter class
+   * @return the converter class name ready to be instanciated
+   * @throws Exception
+   */
   private AbstractConverter getConverterName(String name) throws Exception {
     String[] splittedValues = name.replaceAll(" +", "").trim().split(":");
     String className = splittedValues[1];

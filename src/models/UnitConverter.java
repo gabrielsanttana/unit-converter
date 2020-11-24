@@ -21,8 +21,7 @@ public class UnitConverter {
     AbstractConverter fromUnitConverter,
     AbstractConverter toUnitConverter,
     double fromValue
-  )
-    throws ConversionErrorException, Exception {
+  ) throws ConversionErrorException, Exception {
     double returnValue = toUnitConverter.fromBasicUnit(
       fromUnitConverter.toBasicUnit(fromValue)
     );
