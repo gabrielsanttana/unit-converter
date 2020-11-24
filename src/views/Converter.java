@@ -23,14 +23,17 @@ import models.MeasureType;
 import utils.MultiMap;
 
 /**
- * A class that renders the program main view, the one that receives the unit
+ * A class that renders the program main view, which receives the unit
  * types and prints out the conversion result
  */
 public class Converter {
 
   private JFrame frame;
   private JMenuBar menuBar;
-  private JMenu menu;
+  private JMenu fileMenu;
+  private JMenu helpMenu;
+  private JMenuItem menuCloseItem;
+  private JMenuItem menuHelpItem;
   private JPanel panel;
   private JLabel fromLabel;
   private JLabel toLabel;
@@ -38,9 +41,10 @@ public class Converter {
   private JTextField toInput;
   private JComboBox fromSelect;
   private JComboBox toSelect;
-  private int count;
-  private MeasureType conversionType;
 
+  /**
+   * Constructs the converter view
+   */
   public Converter() {
     fromLabel = new JLabel("Convert from");
     toLabel = new JLabel("to");
@@ -94,11 +98,11 @@ public class Converter {
       }
     );
 
-    JMenuItem menuCloseItem = new JMenuItem("Close");
-    JMenuItem menuHelpItem = new JMenuItem("Help");
+    menuCloseItem = new JMenuItem("Close");
+    menuHelpItem = new JMenuItem("Help");
 
-    JMenu fileMenu = new JMenu("File");
-    JMenu helpMenu = new JMenu("Help");
+    fileMenu = new JMenu("File");
+    helpMenu = new JMenu("Help");
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
@@ -119,8 +123,8 @@ public class Converter {
     menuHelpItem.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          // Helper helper = new Helper();
-          // helper.setVisible(true);
+          Helper helper = new Helper();
+          helper.setVisible(true);
         }
       }
     );
