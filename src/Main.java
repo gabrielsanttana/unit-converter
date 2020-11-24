@@ -10,7 +10,7 @@ public class Main {
    *             arguments
    */
   public static void main(String[] args) {
-    // Converter converter = new Converter();
+    Converter converter = new Converter();
     Helper helper = new Helper();
   }
 }
