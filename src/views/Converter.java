@@ -1,12 +1,13 @@
 package views;
 
-import converters.AbstractConverter;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,9 +19,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import controllers.Controller;
+import converters.AbstractConverter;
+import converters.CentimetreConverter;
+import converters.MetreConverter;
 import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
+import utils.lang.ELang;
 import utils.lang.Lang;
 
 /**
@@ -45,6 +52,8 @@ public class Converter {
   private JTextField toInput;
   private JComboBox<String> fromSelect;
   private JComboBox<String> toSelect;
+  
+  private MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses;
 
   /**
    * Constructs the converter view
@@ -60,6 +69,8 @@ public class Converter {
     toSelect = new JComboBox<>();
 
     toInput.setEditable(false);
+    
+  	Locale language = new Locale("PT");
 
     setFromComboBox();
 
@@ -102,14 +113,14 @@ public class Converter {
       }
     );
 
-    menuCloseItem = new JMenuItem("Close");
-    menuHelpItem = new JMenuItem("Help");
-    portugueseLanguageItem = new JMenuItem("Portuguese");
-    englishLanguageItem = new JMenuItem("English");
+    menuCloseItem = new JMenuItem(Lang.get(Lang.close));
+    menuHelpItem = new JMenuItem(Lang.get(Lang.help));
+    portugueseLanguageItem = new JMenuItem(Lang.get(Lang.pt_br));
+    englishLanguageItem = new JMenuItem(Lang.get(Lang.en_us));
 
-    fileMenu = new JMenu("File");
-    helpMenu = new JMenu("Help");
-    languageMenu = new JMenu("Language");
+    fileMenu = new JMenu(Lang.get(Lang.file));
+    helpMenu = new JMenu(Lang.get(Lang.help));
+    languageMenu = new JMenu(Lang.get(Lang.language));
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
@@ -134,14 +145,18 @@ public class Converter {
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           //Set program language
+        	Lang.setLanguage(ELang.EN_US);
+        	//SwingUtilities.updateComponentTreeUI(frame);
         }
       }
     );
 
-    menuCloseItem.addActionListener(
+    portugueseLanguageItem.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           //Set program language
+        	Lang.setLanguage(ELang.PT_BR);
+        	//SwingUtilities.updateComponentTreeUI(frame);
         }
       }
     );
@@ -186,13 +201,40 @@ public class Converter {
   }
 
   private String getConversionResult() {
-    return "100";
+  	Controller controller = new Controller();
+  	
+  	String inputValue = fromInput.getText();
+  	if (inputValue.equals("")) {
+  		return "";
+  	}
+  	
+  	double fromValue = 0.0;
+  	try {
+  		fromValue = Double.parseDouble(fromInput.getText());
+  	} catch (NumberFormatException e) {
+  		return Lang.get(Lang.insert_valid_input);
+  	}
+  	
+  	AbstractConverter fromConverter = null;
+  	AbstractConverter toConverter = null;
+  	try {
+    	fromConverter = getConverterName(fromSelect.getSelectedItem().toString());
+    	toConverter = getConverterName(toSelect.getSelectedItem().toString());
+  	} catch (Exception e) {
+  		return Lang.get(Lang.converter_not_found);
+  	}
+  	
+  	if (fromConverter != null && toConverter != null) {
+    	return controller.convert(fromConverter, toConverter, fromValue) + " " + fromConverter.type.getBasicUnit();
+  	}
+  	
+  	return Lang.get(Lang.conversion_failed);
   }
 
   public void setFromComboBox() {
     ClassSorter classSorter = new ClassSorter();
 
-    MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
+    sortedClasses = classSorter.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
       for (Class<AbstractConverter> converters : sortedClasses.get(
@@ -219,14 +261,14 @@ public class Converter {
 
     ClassSorter classSorter = new ClassSorter();
 
-    MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses = classSorter.getClassesOrderedByUnitType();
+    sortedClasses = classSorter.getClassesOrderedByUnitType();
 
     for (MeasureType measureType : sortedClasses.getKeySet()) {
       for (Class<AbstractConverter> converters : sortedClasses.get(
         measureType
       )) {
         String type = measureType + "";
-        if (type.equals(selectedType)) {
+        if (type.toUpperCase().equals(selectedType.toUpperCase())) {
           toSelect.addItem(
             measureType +
             ": " +
@@ -244,5 +286,19 @@ public class Converter {
     String result = getConversionResult();
 
     toInput.setText(result);
+  }
+  
+  private AbstractConverter getConverterName(String name) throws Exception {
+  	String[] splittedValues = name.replaceAll(" +", "").trim().split(":");
+  	String className = splittedValues[1];
+  	
+  	Class<AbstractConverter>[] converterValues = (Class<AbstractConverter>[])sortedClasses.values().toArray();
+  	for (Class<AbstractConverter> absConverter : converterValues) {
+  		if (absConverter.getClass().getName().contains(className)) {
+  			return absConverter.getDeclaredConstructor().newInstance();
+  		}
+  	}
+  	
+  	return null;
   }
 }
