@@ -25,15 +25,28 @@ public enum MeasureType {
   private String type;
   private String basicUnit;
 
+  /**
+   * Constructs the enum
+   * @param type the measurement type
+   * @param basicUnit the basic unit of the given measurement type
+   */
   private MeasureType(String type, String basicUnit) {
     this.type = type;
     this.basicUnit = basicUnit;
   }
 
+  /**
+   * Returns the measure type
+   * @return the measure type
+   */
   public String getType() {
     return this.type;
   }
 
+  /**
+   * Returns the basic unit of the measure type
+   * @return the basic unit of the measure type
+   */
   public String getBasicUnit() {
     return this.basicUnit;
   }

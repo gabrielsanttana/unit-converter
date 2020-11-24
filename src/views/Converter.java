@@ -11,6 +11,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -26,6 +29,8 @@ import utils.MultiMap;
 public class Converter {
 
   private JFrame frame;
+  private JMenuBar menuBar;
+  private JMenu menu;
   private JPanel panel;
   private JLabel fromLabel;
   private JLabel toLabel;
@@ -89,9 +94,41 @@ public class Converter {
       }
     );
 
+    JMenuItem menuCloseItem = new JMenuItem("Close");
+    JMenuItem menuHelpItem = new JMenuItem("Help");
+
+    JMenu fileMenu = new JMenu("File");
+    JMenu helpMenu = new JMenu("Help");
+
+    fileMenu.add(menuCloseItem);
+    helpMenu.add(menuHelpItem);
+
+    menuBar = new JMenuBar();
+    menuBar.setBounds(0, 0, 658, 22);
+    menuBar.add(fileMenu);
+    menuBar.add(helpMenu);
+
+    menuCloseItem.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          System.exit(0);
+        }
+      }
+    );
+
+    menuHelpItem.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          // Helper helper = new Helper();
+          // helper.setVisible(true);
+        }
+      }
+    );
+
     panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
     panel.setLayout(new GridLayout(0, 1));
+    panel.add(menuBar);
     panel.add(fromLabel);
     panel.add(fromInput);
     panel.add(fromSelect);
