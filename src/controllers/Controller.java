@@ -33,6 +33,16 @@ public class Controller {
 
     return null;
   }
+  
+  /**
+   * Sorts the converter classes by measure type
+   * @return a MultiMap containing the sorted classes
+   */
+  public MultiMap<MeasureType, Class<AbstractConverter>> sortConverterClasses() {
+  	ClassSorter classSorter = new ClassSorter();
+  	
+  	return classSorter.getClassesOrderedByUnitType();
+  }
 
   /**
    * Formats and returns doubles

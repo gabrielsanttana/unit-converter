@@ -5,6 +5,6 @@ import models.MeasureType;
 public class KilogramConverter extends BaseUnitConverter {
 
   public KilogramConverter() {
-    super(MeasureType.MASS);
+    super(MeasureType.MASS, false);
   }
 }

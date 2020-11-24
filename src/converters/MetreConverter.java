@@ -5,6 +5,6 @@ import models.MeasureType;
 public class MetreConverter extends BaseUnitConverter {
 
   public MetreConverter() {
-    super(MeasureType.DISTANCE);
+    super(MeasureType.DISTANCE, false);
   }
 }
