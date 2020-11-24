@@ -1,13 +1,17 @@
 package views;
 
+import controllers.Controller;
+import converters.AbstractConverter;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
-
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,11 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import controllers.Controller;
-import converters.AbstractConverter;
-import converters.CentimetreConverter;
-import converters.MetreConverter;
 import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
@@ -52,7 +51,7 @@ public class Converter {
   private JTextField toInput;
   private JComboBox<String> fromSelect;
   private JComboBox<String> toSelect;
-  
+
   private MultiMap<MeasureType, Class<AbstractConverter>> sortedClasses;
 
   /**
@@ -69,8 +68,8 @@ public class Converter {
     toSelect = new JComboBox<>();
 
     toInput.setEditable(false);
-    
-  	Locale language = new Locale("PT");
+
+    Locale language = new Locale("PT");
 
     setFromComboBox();
 
@@ -124,14 +123,11 @@ public class Converter {
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
-    languageMenu.add(englishLanguageItem);
-    languageMenu.add(portugueseLanguageItem);
 
     menuBar = new JMenuBar();
     menuBar.setBounds(0, 0, 658, 22);
     menuBar.add(fileMenu);
     menuBar.add(helpMenu);
-    menuBar.add(languageMenu);
 
     menuCloseItem.addActionListener(
       new ActionListener() {
@@ -145,8 +141,8 @@ public class Converter {
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           //Set program language
-        	Lang.setLanguage(ELang.EN_US);
-        	//SwingUtilities.updateComponentTreeUI(frame);
+          //Lang.setLanguage(ELang.EN_US);
+          //SwingUtilities.updateComponentTreeUI(frame);
         }
       }
     );
@@ -155,8 +151,8 @@ public class Converter {
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           //Set program language
-        	Lang.setLanguage(ELang.PT_BR);
-        	//SwingUtilities.updateComponentTreeUI(frame);
+          //Lang.setLanguage(ELang.PT_BR);
+          //SwingUtilities.updateComponentTreeUI(frame);
         }
       }
     );
@@ -201,34 +197,38 @@ public class Converter {
   }
 
   private String getConversionResult() {
-  	Controller controller = new Controller();
-  	
-  	String inputValue = fromInput.getText();
-  	if (inputValue.equals("")) {
-  		return "";
-  	}
-  	
-  	double fromValue = 0.0;
-  	try {
-  		fromValue = Double.parseDouble(fromInput.getText());
-  	} catch (NumberFormatException e) {
-  		return Lang.get(Lang.insert_valid_input);
-  	}
-  	
-  	AbstractConverter fromConverter = null;
-  	AbstractConverter toConverter = null;
-  	try {
-    	fromConverter = getConverterName(fromSelect.getSelectedItem().toString());
-    	toConverter = getConverterName(toSelect.getSelectedItem().toString());
-  	} catch (Exception e) {
-  		return Lang.get(Lang.converter_not_found);
-  	}
-  	
-  	if (fromConverter != null && toConverter != null) {
-    	return controller.convert(fromConverter, toConverter, fromValue) + " " + fromConverter.type.getBasicUnit();
-  	}
-  	
-  	return Lang.get(Lang.conversion_failed);
+    Controller controller = new Controller();
+
+    String inputValue = fromInput.getText();
+    if (inputValue.equals("")) {
+      return "";
+    }
+
+    if (inputValue.toLowerCase().contains("e")) {
+      return Lang.get(Lang.insert_valid_input);
+    }
+
+    double fromValue = 0.0;
+    try {
+      fromValue = Double.parseDouble(fromInput.getText());
+    } catch (NumberFormatException e) {
+      return Lang.get(Lang.insert_valid_input);
+    }
+
+    AbstractConverter fromConverter = null;
+    AbstractConverter toConverter = null;
+    try {
+      fromConverter = getConverterName(fromSelect.getSelectedItem().toString());
+      toConverter = getConverterName(toSelect.getSelectedItem().toString());
+    } catch (Exception e) {
+      return Lang.get(Lang.converter_not_found);
+    }
+
+    if (fromConverter != null && toConverter != null) {
+      return controller.convert(fromConverter, toConverter, fromValue);
+    }
+
+    return Lang.get(Lang.conversion_failed);
   }
 
   public void setFromComboBox() {
@@ -270,7 +270,7 @@ public class Converter {
         String type = measureType + "";
         if (type.toUpperCase().equals(selectedType.toUpperCase())) {
           toSelect.addItem(
-            measureType +
+            measureType.getType() +
             ": " +
             converters
               .getName()
@@ -287,18 +287,24 @@ public class Converter {
 
     toInput.setText(result);
   }
-  
+
   private AbstractConverter getConverterName(String name) throws Exception {
-  	String[] splittedValues = name.replaceAll(" +", "").trim().split(":");
-  	String className = splittedValues[1];
-  	
-  	Class<AbstractConverter>[] converterValues = (Class<AbstractConverter>[])sortedClasses.values().toArray();
-  	for (Class<AbstractConverter> absConverter : converterValues) {
-  		if (absConverter.getClass().getName().contains(className)) {
-  			return absConverter.getDeclaredConstructor().newInstance();
-  		}
-  	}
-  	
-  	return null;
+    String[] splittedValues = name.replaceAll(" +", "").trim().split(":");
+    String className = splittedValues[1];
+
+    List<Class<AbstractConverter>> converterValues = new ArrayList<>();
+    for (Collection<Class<AbstractConverter>> absConverter : sortedClasses.values()) {
+      for (Class<AbstractConverter> item : absConverter) {
+        converterValues.add(item);
+      }
+    }
+
+    for (Class<AbstractConverter> absConverter : converterValues) {
+      if (absConverter.getCanonicalName().contains(className)) {
+        return absConverter.getDeclaredConstructor().newInstance();
+      }
+    }
+
+    return null;
   }
 }

@@ -7,12 +7,12 @@ import utils.lang.Lang;
  */
 public enum MeasureType {
   DISTANCE(Lang.get(Lang.unit_distance), "m"),
-  AREA(Lang.get(Lang.unit_area), "m²"),
+  AREA(Lang.get(Lang.unit_area), "mï¿½"),
   VOLUME(Lang.get(Lang.unit_volume), "L"),
   MASS(Lang.get(Lang.unit_mass), "kg"),
   TIME(Lang.get(Lang.unit_time), "s"),
   SPEED(Lang.get(Lang.unit_speed), "m/s"),
-  ACCELERATION(Lang.get(Lang.unit_acceleration), "m/s²"),
+  ACCELERATION(Lang.get(Lang.unit_acceleration), "m/sï¿½"),
   FORCE(Lang.get(Lang.unit_force), "N"),
   PRESSURE(Lang.get(Lang.unit_pressure), "Pa"),
   ENERGY(Lang.get(Lang.unit_energy), "J"),
