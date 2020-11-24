@@ -49,7 +49,7 @@ public class Helper extends JPanel {
 		panel.add(unitConverterImage);
 
 		JPanel helpPanel = new JPanel();
-		helpPanel.setBorder(new TitledBorder(null, "Help", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+		helpPanel.setBorder(new TitledBorder(null, "About", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		helpPanel.setBounds(250 + (16 * 4), 16, 468, 400);
 		helpPanel.setLayout(new GridLayout(1, 0));
 
