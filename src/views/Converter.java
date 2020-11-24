@@ -21,6 +21,7 @@ import javax.swing.event.DocumentListener;
 import models.ClassSorter;
 import models.MeasureType;
 import utils.MultiMap;
+import utils.lang.Lang;
 
 /**
  * A class that renders the program main view, which receives the unit
@@ -46,8 +47,8 @@ public class Converter {
    * Constructs the converter view
    */
   public Converter() {
-    fromLabel = new JLabel("Convert from");
-    toLabel = new JLabel("to");
+    fromLabel = new JLabel(Lang.get(Lang.convertFrom));
+    toLabel = new JLabel(Lang.get(Lang.to));
 
     fromInput = new JTextField();
     toInput = new JTextField();
@@ -98,11 +99,11 @@ public class Converter {
       }
     );
 
-    menuCloseItem = new JMenuItem("Close");
-    menuHelpItem = new JMenuItem("Help");
+    menuCloseItem = new JMenuItem(Lang.get(Lang.close));
+    menuHelpItem = new JMenuItem(Lang.get(Lang.help));
 
-    fileMenu = new JMenu("File");
-    helpMenu = new JMenu("Help");
+    fileMenu = new JMenu(Lang.get(Lang.file));
+    helpMenu = new JMenu(Lang.get(Lang.help));
 
     fileMenu.add(menuCloseItem);
     helpMenu.add(menuHelpItem);
@@ -150,7 +151,7 @@ public class Converter {
     frame.add(panel, BorderLayout.CENTER);
     frame.setPreferredSize(new Dimension(1000, 500));
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setTitle("Unit Converter");
+    frame.setTitle(Lang.get(Lang.unit_converter));
     frame.pack();
     frame.setVisible(true);
     frame.setLocation(
@@ -173,7 +174,7 @@ public class Converter {
         measureType
       )) {
         fromSelect.addItem(
-          measureType +
+          measureType.getType() +
           ": " +
           converters
             .getName()

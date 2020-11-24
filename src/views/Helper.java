@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import utils.lang.Lang;
+
 /**
  * A class that renders the helper view, which shows to the user the program's general information
  */
@@ -43,7 +45,7 @@ public class Helper extends JPanel {
     panel.setBorder(
       new TitledBorder(
         UIManager.getBorder("TitledBorder.border"),
-        "Unit Converter",
+        Lang.get(Lang.unit_converter),
         TitledBorder.LEADING,
         TitledBorder.TOP,
         null,
@@ -68,7 +70,7 @@ public class Helper extends JPanel {
     helpPanel.setBorder(
       new TitledBorder(
         null,
-        "About",
+        Lang.get(Lang.about),
         TitledBorder.LEADING,
         TitledBorder.TOP,
         null,
@@ -85,7 +87,7 @@ public class Helper extends JPanel {
     helpInfo.setAutoscrolls(true);
     helpInfo.setBounds(6, 16, 543, 163);
     helpInfo.setText(
-      "Unit Converter\nConversor de Unidades\n\n-------------------------------\n\nThis program was written to be a simple educational project that shows how to use some resources of Graphical User Interface (Swing) from Java language and some software engineering techniques. The aim of the program is performing the conversion between two measure units.\n\nAll teh action is placed int the background panel of the main screen. The user interacts woth this screen most of time.\n\nThe menu options are very straight:\n* From the 'File' menu, one can choose to finish the program;\n* From the 'Help' menu, one can choose see standard texts: 'Help', 'Disclaimer' and 'About'\n\nEste programa foi escrito para ser um projeto educacional simples que mostra como usar alguns recursos da Interface Gráfica do Usuário (Swing) da linguagem Java e algumas técnicas de engenharia de software. O objetivo do programa é realizar a conversão entre duas unidades de medida.\n\nToda a ação é colocada no painel de fundo da tela principal. O usuário interage com esta tela na maioria das vezes.\n\nAs opções do menu são muito simples:\n* No menu 'Arquivo', pode-se optar por finalizar o programa;\n* No menu 'Ajuda', pode-se escolher ver os textos padrão: 'Ajuda', 'Aviso Legal' e 'Sobre'"
+      Lang.get(Lang.helper_text)
     );
     helpInfo.setColumns(1);
     helpInfo.setLineWrap(true);
@@ -99,7 +101,7 @@ public class Helper extends JPanel {
     panel.add(helpPanel);
 
     frame = new JFrame();
-    JButton button = new JButton("Close");
+    JButton button = new JButton(Lang.get(Lang.close));
     button.setBounds((800 / 2) - 50, 400 + 24, 100, 30);
     button.addActionListener(
       new ActionListener() {
@@ -120,7 +122,7 @@ public class Helper extends JPanel {
     frame.add(panel, BorderLayout.CENTER);
     frame.setPreferredSize(new Dimension(800, 500));
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    frame.setTitle("Unit Converter");
+    frame.setTitle(Lang.get(Lang.unit_converter));
     frame.pack();
     frame.setVisible(true);
     frame.setLocation(
