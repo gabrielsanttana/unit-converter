@@ -12,13 +12,13 @@ public class KilometrePerSecondSquaredConverter extends AbstractConverter {
   public double fromBasicUnit(double baseUnit) {
     if (!isInputValid(baseUnit)) return Double.NaN;
 
-    return baseUnit * 1000;
+    return baseUnit / 1000;
   }
 
   @Override
   public double toBasicUnit(double value) {
     if (!isInputValid(value)) return Double.NaN;
 
-    return value / 1000;
+    return value * 1000;
   }
 }

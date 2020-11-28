@@ -2,10 +2,10 @@ package converters;
 
 import models.MeasureType;
 
-public class CentiPoiseConverter extends AbstractConverter {
+public class MillimetreConverter extends BaseUnitConverter {
 
-  public CentiPoiseConverter() {
-    super(MeasureType.VISCOSITY, true);
+  public MillimetreConverter() {
+    super(MeasureType.DISTANCE, false);
   }
 
   @Override

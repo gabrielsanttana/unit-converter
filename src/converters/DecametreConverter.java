@@ -5,7 +5,7 @@ import models.MeasureType;
 public class DecametreConverter extends BaseUnitConverter {
 
   public DecametreConverter() {
-    super(MeasureType.AREA, false);
+    super(MeasureType.DISTANCE, false);
   }
 
   @Override

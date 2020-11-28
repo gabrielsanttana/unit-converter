@@ -5,7 +5,7 @@ import models.MeasureType;
 public class InchConverter extends BaseUnitConverter {
 
   public InchConverter() {
-    super(MeasureType.AREA, false);
+    super(MeasureType.DISTANCE, false);
   }
 
   @Override

@@ -2,23 +2,23 @@ package converters;
 
 import models.MeasureType;
 
-public class MillimetreConveter extends BaseUnitConverter {
+public class DecanewtonConverter extends AbstractConverter {
 
-  public MillimetreConveter() {
-    super(MeasureType.AREA, false);
+  public DecanewtonConverter() {
+    super(MeasureType.FORCE, true);
   }
 
   @Override
   public double fromBasicUnit(double baseUnit) {
     if (!isInputValid(baseUnit)) return Double.NaN;
 
-    return baseUnit * 1000;
+    return baseUnit / 10;
   }
 
   @Override
   public double toBasicUnit(double value) {
     if (!isInputValid(value)) return Double.NaN;
 
-    return value / 1000;
+    return value * 10;
   }
 }

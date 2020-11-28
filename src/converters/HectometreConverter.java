@@ -5,7 +5,7 @@ import models.MeasureType;
 public class HectometreConverter extends BaseUnitConverter {
 
   public HectometreConverter() {
-    super(MeasureType.AREA, false);
+    super(MeasureType.DISTANCE, false);
   }
 
   @Override

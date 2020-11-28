@@ -5,7 +5,7 @@ import models.MeasureType;
 public class NanometreConverter extends BaseUnitConverter {
 
   public NanometreConverter() {
-    super(MeasureType.AREA, false);
+    super(MeasureType.DISTANCE, false);
   }
 
   @Override
