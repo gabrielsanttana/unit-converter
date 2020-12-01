@@ -1,10 +1,9 @@
 package controllers;
 
-import java.net.MalformedURLException;
-import java.util.List;
-
 import converters.AbstractConverter;
 import exceptions.ConversionErrorException;
+import java.net.MalformedURLException;
+import java.util.List;
 import models.ClassSeeker;
 import models.ClassSorter;
 import models.MeasureType;
@@ -70,7 +69,7 @@ public class Controller {
   ) {
     try {
       UnitConverter unitConverter = new UnitConverter();
-      
+
       return formatDouble(unitConverter.convert(fromUnit, toUnit, fromValue));
     } catch (ConversionErrorException e) {
       e.printStackTrace();

@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 /**
- * A class that formats double numbers
+ * A class that formats double numbers to strings
  */
 public class NumberFormatter {
 

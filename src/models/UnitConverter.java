@@ -4,7 +4,7 @@ import converters.AbstractConverter;
 import exceptions.ConversionErrorException;
 
 /**
- * A class that converts values from a unit into another
+ * A class that converts values from a unit type into another
  */
 public class UnitConverter {
 
@@ -22,9 +22,8 @@ public class UnitConverter {
     AbstractConverter toUnitConverter,
     double fromValue
   ) throws ConversionErrorException, Exception {
-  	
     double returnValue = toUnitConverter.fromBasicUnit(
-    		fromUnitConverter.toBasicUnit(fromValue)
+      fromUnitConverter.toBasicUnit(fromValue)
     );
 
     return returnValue;
