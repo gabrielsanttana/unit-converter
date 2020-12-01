@@ -13,6 +13,9 @@ import java.util.jar.JarInputStream;
 
 import converters.AbstractConverter;
 
+/**
+ * A class the looks for all the converter classes in a predetermined package
+ */
 public class ClassSeeker {
 
     public static final String packageName = "converters";
