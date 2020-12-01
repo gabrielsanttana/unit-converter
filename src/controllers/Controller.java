@@ -1,8 +1,10 @@
 package controllers;
 
+import java.net.MalformedURLException;
+import java.util.List;
+
 import converters.AbstractConverter;
 import exceptions.ConversionErrorException;
-import java.util.List;
 import models.ClassSeeker;
 import models.ClassSorter;
 import models.MeasureType;
@@ -21,7 +23,7 @@ public class Controller {
    * @throws ClassNotFoundException
    */
   public List<Class<AbstractConverter>> lookForConverterClasses()
-    throws ClassNotFoundException {
+    throws ClassNotFoundException, MalformedURLException {
     try {
       ClassSeeker classSeeker = new ClassSeeker();
 
