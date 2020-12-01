@@ -12,12 +12,12 @@ public class CelsiusConverter extends AbstractConverter {
   @Override
   public double fromBasicUnit(double baseUnit)
     throws ConversionErrorException, IllegalArgumentException {
-    return 0;
+    return baseUnit - 273.15;
   }
 
   @Override
   public double toBasicUnit(double value)
     throws ConversionErrorException, IllegalArgumentException {
-    return 0;
+    return value + 273.15;
   }
 }

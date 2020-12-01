@@ -206,7 +206,7 @@ public class ClassSeeker {
 
                 Class<?> cls = ucl.loadClass(clsName);
 
-                if (AbstractConverter.class.isAssignableFrom(cls) && AbstractConverter.class != cls) {
+                if (AbstractConverter.class.isAssignableFrom(cls) && AbstractConverter.class != cls && !isClassAnException(cls)) {
                     loadedClass = (Class<AbstractConverter>) cls;
                     //loadedClass = (AbstractConverter) cls.getDeclaredConstructor().newInstance();
                 }

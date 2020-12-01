@@ -17,7 +17,7 @@ public class NumberFormatter {
    * @return the string with the formatted number
    */
   public String formatDouble(double number) {
-    if (number >= UPPER_BOUND || number <= LOWER_BOUND) {
+    if (number >= UPPER_BOUND || (number <= LOWER_BOUND && number > 0)) {
       NumberFormat formatter = new DecimalFormat("0.########E0");
 
       return formatter.format(number).replaceAll(",", ".");

@@ -12,12 +12,12 @@ public class RealConverter extends AbstractConverter {
   @Override
   public double fromBasicUnit(double baseUnit)
     throws ConversionErrorException, IllegalArgumentException {
-    return 0;
+    return baseUnit * 6;
   }
 
   @Override
   public double toBasicUnit(double value)
     throws ConversionErrorException, IllegalArgumentException {
-    return 0;
+    return value / 6;
   }
 }
